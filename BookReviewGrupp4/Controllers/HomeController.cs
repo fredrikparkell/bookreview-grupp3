@@ -1,4 +1,5 @@
-﻿using BookReviewGrupp4.Models;
+﻿using BookReviewGrupp4.Data;
+using BookReviewGrupp4.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,21 @@ namespace BookReviewGrupp4.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly BookReviewContext _bookContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, BookReviewContext bookContext)
         {
             _logger = logger;
+            _bookContext = bookContext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            
+            var books = from s in _bookContext.Book
+                        orderby s.AverageRating descending
+                        select s;
+            return View(books);
         }
 
         public IActionResult Privacy()
