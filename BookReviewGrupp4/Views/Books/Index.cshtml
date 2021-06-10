@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Search</h2>
+<h1>Search</h1>
 
 <a asp-action="Create" class="btn btn-primary" style="background-color:limegreen">Add New Book</a>
 <br />
@@ -13,9 +13,9 @@
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Search book by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" />
-            <!-- | <a asp-action="Index">Back to Full List</a>-->
+            Search book by title: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            | <a asp-action="Index" class="btn btn-primary" style="background-color:cornflowerblue;color:white;">Clear</a>
         </p>
     </div>
 </form>
@@ -62,7 +62,7 @@
                 <td>
                     <!--<a asp-action="Edit" asp-route-id="@book.BookId">Edit</a> |-->
                     <!--<a asp-action="Details" asp-route-id="@book.BookId">Details</a> |-->
-                    <a asp-action="Delete" asp-route-id="@book.BookId" class="glyphicon glyphicon-remove"></a>
+                    <a asp-action="Delete" asp-route-id="@book.BookId" class="glyphicon glyphicon-remove" style="color:red;"></a>
                 </td>
             </tr>
         }
