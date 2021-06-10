@@ -2,29 +2,90 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var orderedPublished = Model.OrderByDescending(x => x.Published);
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+</div>
+
+@*<table class="table-layout: fixed">
+
+    <thead>
+        <tr>
+            <th>Top rated books</th>
+            <th>Latest published books</th>
+        </tr>
+    </thead>
+
+    <div>
+        <div style=""
+        <tbody>
+            @foreach (var book in Model)
+            {
+
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@book.BookId" asp-controller="Books">@Html.DisplayFor(modelItem => book.Name)</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
 
 
+        <tbody>
+            @foreach (var book in Model.OrderByDescending(x => x.Published))
+            {
 
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@book.BookId" asp-controller="Books">@Html.DisplayFor(modelItem => book.Name)</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </div>
+</table>*@
+<div style="justify-content:center;align-items:center; text-align:center">
+    <div style="width:20%;float:left">
+        <p>Top rated books</p>
+        <table >
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>
+
+                            <a asp-action="Details" asp-route-id="@book.BookId" asp-controller="Books">@Html.DisplayFor(modelItem => book.Name)</a>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+    <div style="Width: 20%; float: right">
+    <p>Latest published books</p>
+    <table >
+
+        <tbody>
+            @foreach (var book in Model.OrderByDescending(x => x.Published))
+            {
+
+                <tr>
+                    <td>
+
+                        <a asp-action="Details" asp-route-id="@book.BookId" asp-controller="Books">@Html.DisplayFor(modelItem => book.Name)</a>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
 </div>
 
 
-<p>Top rated books</p>
-<table class="table">
-<tbody>
-    @foreach (var book in Model)
-    {
-        <tr>
-            <td>
-
-                <a asp-action="Details" asp-route-id="@book.BookId" asp-controller="Books">@Html.DisplayFor(modelItem => book.Name)</a>
-            </td>
-        </tr>
-    }
-
-
-</tbody>
-</table>

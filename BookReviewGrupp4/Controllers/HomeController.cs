@@ -27,7 +27,11 @@ namespace BookReviewGrupp4.Controllers
             var books = from s in _bookContext.Book
                         orderby s.AverageRating descending
                         select s;
+
+
             return View(books);
+            
+            
         }
 
         public IActionResult Privacy()
@@ -40,5 +44,6 @@ namespace BookReviewGrupp4.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
