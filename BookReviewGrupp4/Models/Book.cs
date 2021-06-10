@@ -18,6 +18,7 @@ namespace BookReviewGrupp4.Models
         [Required]
         public string Genre { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Published { get; set; }
         [Required]
         [MinLength(20)]
