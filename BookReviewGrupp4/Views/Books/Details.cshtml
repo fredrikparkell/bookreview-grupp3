@@ -4,83 +4,105 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Model.Book.Name</h1>
+<h4>Här ska authors name vara</h4>
+<hr />
 
-<div>
-    <h4>Book</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Book.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Genre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Book.Genre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Published)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Book.Published)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Book.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.AverageRating)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Book.AverageRating)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Author)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Book.Author.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Book.BookId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<div class="myClass">
+    @*style="display:flex;align-items:center; justify-content:center;"*@
+    <div>
+        <div>
+            <dl class="row">
+                @*<dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Book.Name)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Book.Name)
+                    </dd>*@
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Book.Genre)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Book.Genre)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Book.Published)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Book.Published)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Book.AverageRating)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Book.AverageRating)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Book.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Book.Description)
+                </dd>
+                @*<dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Book.Author)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Book.Author.Name)
+                    </dd>*@
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Book.BookId">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
 
-<div>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="CreateNewReview" method="post">
-                <input type="hidden" name="bookId" value="@Model.Book.BookId"/>
-                <input type="text" name="reviewName" />
-                <input type="text" name="reviewDescription" />
-                <input type="number" name="reviewRating" />
-                <div class="form-group">
-                    <input type="submit" value="Post" class="btn btn-primary" />
-                </div>
-            </form>
+    <div>
+        <hr />
+        <h3>Leave a review for this book</h3>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreateNewReview" method="post">
+                    <input type="hidden" name="bookId" value="@Model.Book.BookId" />
+                    <label for="reviewName">Your Name</label>
+                    <input type="text" name="reviewName" /> <br />
+                    <label for="reviewDescription">Comments</label>
+                    <input type="text" name="reviewDescription" /> <br />
+                    <label for="reviewRating">The Rating</label>
+                    <input type="number" name="reviewRating" /> <br />
+                    <div class="form-group">
+                        <input type="submit" value="Post" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-<div>
-    <!--Alla reviews laddas här-->
-
-    <table class="table">
-        @foreach (var review in Model.Reviews)
-        {
-            <tr>
-                <td>@review.Name</td>
-                <td>@review.Description</td>
-                <td>@review.Rating</td>
-            </tr>
-        }
-    </table>
-</div>
+        <br />
+        <h4>Latest reviews</h4>
+        <div style="height: 200px; overflow: auto;">
+            <!--Alla reviews laddas här-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Rating</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <tr>
+                            <td>@review.Name</td>
+                            <td style="max-width: 350px;"><p style="word-wrap: break-word;">@review.Description</p></td>
+                            <td>@review.Rating</td>
+                            <td>@review.Date</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
