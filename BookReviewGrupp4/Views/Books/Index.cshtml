@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BookReviewGrupp4.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Search</h2>
+
+<p>
+    <a asp-action="Create">Add New Book</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Search book by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <!-- | <a asp-action="Index">Back to Full List</a>-->
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["GenreSortParm"]">@Html.DisplayNameFor(model => model.Genre)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["AuthorSortParm"]">@Html.DisplayNameFor(model => model.Author.Name)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.Published)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["RatingSortParm"]">@Html.DisplayNameFor(model => model.AverageRating)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@book.BookId">@Html.DisplayFor(modelItem => book.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Author.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Published)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.AverageRating) / 10
+            </td>
+            <td>
+                <!--<a asp-action="Edit" asp-route-id="@book.BookId">Edit</a> |-->
+                <!--<a asp-action="Details" asp-route-id="@book.BookId">Details</a> |-->
+                <a asp-action="Delete" asp-route-id="@book.BookId" class="glyphicon glyphicon-remove"></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
