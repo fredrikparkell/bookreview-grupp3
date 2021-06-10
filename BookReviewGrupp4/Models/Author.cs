@@ -10,7 +10,11 @@ namespace BookReviewGrupp4.Models
     {
         [Required]
         public int AuthorId { get; set; }
+
+
         [Required]
+        [MaxLength(30)]
+        [MinLength(5)]
         public string Name { get; set; }
         [Required]
         public string Country { get; set; }

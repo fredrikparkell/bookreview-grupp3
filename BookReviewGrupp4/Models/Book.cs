@@ -12,12 +12,15 @@ namespace BookReviewGrupp4.Models
         [Required]
         public int BookId { get; set; }
         [Required]
+        [MaxLength(50)]
+        [MinLength(5)]
         public string Name { get; set; }
         [Required]
         public string Genre { get; set; }
         [Required]
         public DateTime Published { get; set; }
         [Required]
+        [MinLength(20)]
         public string Description { get; set; }
         public decimal AverageRating { get; set; }
 
