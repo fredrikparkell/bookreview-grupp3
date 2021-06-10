@@ -107,7 +107,7 @@ namespace BookReviewGrupp4.Controllers
                 return NotFound();
             }
 
-            myViewModel.Reviews = GetReviews(id).ToList();
+            myViewModel.Reviews = GetReviews(id).OrderByDescending(d => d.Date).ToList();
             return View(myViewModel);
         }
         [HttpPost]
