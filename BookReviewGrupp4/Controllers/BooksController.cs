@@ -107,6 +107,7 @@ namespace BookReviewGrupp4.Controllers
                 return NotFound();
             }
 
+            myViewModel.Author = _bookContext.Author.FirstOrDefault(a => a.AuthorId == myViewModel.Book.AuthorId);
             myViewModel.Reviews = GetReviews(id).OrderByDescending(d => d.Date).ToList();
             return View(myViewModel);
         }
