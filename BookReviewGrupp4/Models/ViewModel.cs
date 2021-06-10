@@ -11,5 +11,7 @@ namespace BookReviewGrupp4.Models
         public Book Book { get; set; }
         public SelectList Authors { get; set; }
         public List<Review> Reviews { get; set; }
+        public Author Author { get; set; }
+        public List<Book> Books { get; set; }
     }
 }

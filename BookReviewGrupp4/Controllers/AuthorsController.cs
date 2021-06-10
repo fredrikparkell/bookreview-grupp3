@@ -33,14 +33,18 @@ namespace BookReviewGrupp4.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Author
+            var myViewModel = new ViewModel();
+
+            myViewModel.Author = await _context.Author
                 .FirstOrDefaultAsync(m => m.AuthorId == id);
-            if (author == null)
+            if (myViewModel.Author == null)
             {
                 return NotFound();
             }
 
-            return View(author);
+            myViewModel.Books = _context.Book.Where(a => a.AuthorId == myViewModel.Author.AuthorId).ToList();
+
+            return View(myViewModel);
         }
 
         // GET: Authors/Create
