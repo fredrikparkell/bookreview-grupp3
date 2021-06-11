@@ -15,6 +15,7 @@ namespace BookReviewGrupp4.Models
         [Required]
         [MaxLength(30)]
         [MinLength(5)]
+        [Display(Name = "Author")]
         public string Name { get; set; }
         [Required]
         public string Country { get; set; }
