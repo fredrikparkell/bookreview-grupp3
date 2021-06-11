@@ -22,7 +22,14 @@ namespace BookReviewGrupp4.Controllers
         // GET: Authors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Author.ToListAsync());
+            var authors = await _context.Author.ToListAsync();
+
+            foreach (var item in authors)
+            {
+                item.Books = _context.Book.Where(b => b.AuthorId == item.AuthorId).ToList();
+            }
+
+            return View(authors);
         }
 
         // GET: Authors/Details/5
