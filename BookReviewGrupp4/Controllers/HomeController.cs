@@ -34,7 +34,7 @@ namespace BookReviewGrupp4.Controllers
             
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }
