@@ -14,6 +14,7 @@ namespace BookReviewGrupp4.Models
         [Required]
         [MaxLength(50)]
         [MinLength(5)]
+        [Display(Name = "Title")]
         public string Name { get; set; }
         [Required]
         public string Genre { get; set; }
@@ -23,7 +24,10 @@ namespace BookReviewGrupp4.Models
         [Required]
         [MinLength(20)]
         public string Description { get; set; }
+        [Display(Name = "Average Rating")]
         public decimal AverageRating { get; set; }
+        public int AmountReviews { get; set; }
+
 
         public int AuthorId { get; set; }
         public virtual Author Author { get; set; }

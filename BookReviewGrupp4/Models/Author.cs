@@ -9,8 +9,8 @@ namespace BookReviewGrupp4.Models
     public class Author
     {
         [Required]
+        [Display(Name = "Author")]
         public int AuthorId { get; set; }
-
 
         [Required]
         [MaxLength(30)]
@@ -18,6 +18,8 @@ namespace BookReviewGrupp4.Models
         public string Name { get; set; }
         [Required]
         public string Country { get; set; }
+        [Display(Name = "Average Rating")]
+        public decimal AverageRating { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }
     }
