@@ -60,6 +60,21 @@ namespace BookReviewGrupp4.Controllers
                     //books = books.OrderByDescending(s => s.Published);
                     break;
             }
+
+            foreach (var item in books)
+            {
+                var reviews = _bookContext.Review.Where(b => b.BookId == item.BookId).ToList();
+                if (reviews.Count == 0)
+                {
+                    item.AverageRating = (decimal)0;
+                }
+                else
+                {
+                    item.AverageRating = reviews.Sum(x => x.Rating) / reviews.Count;
+                }
+            }
+            await _bookContext.SaveChangesAsync();
+
             return View(await books.AsNoTracking().ToListAsync());
         } // måste lägga till sortera för genre, author och averagerating
         #endregion
@@ -109,6 +124,15 @@ namespace BookReviewGrupp4.Controllers
 
             myViewModel.Author = _bookContext.Author.FirstOrDefault(a => a.AuthorId == myViewModel.Book.AuthorId);
             myViewModel.Reviews = GetReviews(id).OrderByDescending(d => d.Date).ToList();
+            if (myViewModel.Reviews.Count == 0)
+            {
+                myViewModel.Book.AverageRating = (decimal)0;
+            }
+            else
+            {
+                myViewModel.Book.AverageRating = myViewModel.Reviews.Sum(x => x.Rating) / myViewModel.Reviews.Count;
+            }
+            await _bookContext.SaveChangesAsync();
             return View(myViewModel);
         }
         [HttpPost]
