@@ -4,9 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 style="font-weight:bold">Add a new Book</h1>
 
-<h4>Book</h4>
+<a asp-controller="Authors" asp-action="Create" class="btn btn-primary" style="background-color:limegreen">Add New Author</a>
+| <a asp-action="Index" class="btn btn-primary" style="background-color: cornflowerblue; color: white;">Back to List</a>
+@*<h4>Book</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -34,18 +36,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Book.Author" class="control-label"></label>
-                <p><a asp-controller="Authors" asp-action="Create">Create New Author</a></p>
                 <select asp-for="Book.AuthorId" class="form-control" asp-items="Model.Authors"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <br />
+                <input type="submit" value="Create Book" class="btn btn-primary" style="background-color:limegreen" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
