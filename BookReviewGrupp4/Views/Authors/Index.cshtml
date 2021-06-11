@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Country)
             </th>
             <th style="color: white;">
-                @Html.DisplayName("AverageRating")
+                @Html.DisplayNameFor(model => model.AverageRating)
             </th>
             <th></th>
         </tr>
@@ -28,7 +28,6 @@
     <tbody>
         @foreach (var item in Model)
         {
-
         <tr>
             <td>
                 <a asp-action="Details" asp-route-id="@item.AuthorId">@Html.DisplayFor(modelItem => item.Name)</a>
@@ -37,11 +36,9 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Html.Raw(item.Books.Average(x => x.AverageRating))
+                @Html.DisplayFor(modelItem => item.AverageRating) / 5
             </td>
             <td>
-                <!--<a asp-action="Edit" asp-route-id="@item.AuthorId">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.AuthorId">Details</a> |-->
                 <a asp-action="Delete" asp-route-id="@item.AuthorId" class="glyphicon glyphicon-remove" style="color:red;"></a>
             </td>
         </tr>

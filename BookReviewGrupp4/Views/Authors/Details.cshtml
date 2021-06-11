@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 style="font-weight: bold;">@Model.Author.Name</h1>
 
 <div>
-    <h4>Author</h4>
+    @*<h4>Author</h4>*@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -22,31 +22,37 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Author.Country)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Author.AverageRating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Author.AverageRating) / 5
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Author.AuthorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Create" asp-controller="Books" class="btn btn-primary" style="background-color:limegreen" ;>Add New Book</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Author.AuthorId" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-primary" style="background-color: cornflowerblue; color: white;">Back to List</a>
 </div>
 <br />
 <h4>Books</h4>
 <div>
     <table class="table">
 
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th>Title</th>
                 <th>Genre</th>
                 <th>Author</th>
                 <th>Published</th>
-                <th>Average rating</th>
+                <th>Average Rating</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var book in Model.Books)
             {
                 <tr>
-
                     <td><a asp-action="Details" asp-controller="Books" asp-route-id="@book.BookId">@book.Name</a></td>
                     <td>@book.Genre</td>
                     <td>@Model.Author.Name</td>
