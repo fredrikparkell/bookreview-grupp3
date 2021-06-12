@@ -23,9 +23,11 @@ namespace BookReviewGrupp4.Controllers
 
         public IActionResult Index()
         {
-            var books = _bookContext.Book.OrderByDescending(b => b.AverageRating).Take(8);
+            var myViewModel = new ViewModel();
+            myViewModel.Books = _bookContext.Book.OrderByDescending(b => b.AverageRating).Take(8).ToList();
+            myViewModel.AuthorsList = _bookContext.Author.OrderByDescending(a => a.AverageRating).Take(8).ToList();
 
-            return View(books); 
+            return View(myViewModel); 
         }
 
         public IActionResult About()
