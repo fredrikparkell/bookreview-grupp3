@@ -26,6 +26,7 @@ namespace BookReviewGrupp4.Models
         public string Description { get; set; }
         [Display(Name = "Average Rating")]
         public decimal AverageRating { get; set; }
+        [Display(Name = "Reviews")]
         public int AmountReviews { get; set; }
 
 

@@ -72,6 +72,7 @@ namespace BookReviewGrupp4.Controllers
                 {
                     item.AverageRating = reviews.Sum(x => x.Rating) / reviews.Count;
                 }
+                item.AmountReviews = reviews.Count;
             }
             await _bookContext.SaveChangesAsync();
 
@@ -153,6 +154,7 @@ namespace BookReviewGrupp4.Controllers
             {
                 myViewModel.Book.AverageRating = myViewModel.Reviews.Sum(x => x.Rating) / myViewModel.Reviews.Count;
             }
+            myViewModel.Book.AmountReviews = myViewModel.Reviews.Count;
             await _bookContext.SaveChangesAsync();
             return View(myViewModel);
         }
@@ -172,6 +174,7 @@ namespace BookReviewGrupp4.Controllers
                 var reviews = _bookContext.Review.Where(b => b.BookId == bookId).ToList();
                 var book = _bookContext.Book.FirstOrDefault(b => b.BookId == bookId);
                 book.AverageRating = reviews.Sum(x => x.Rating) / reviews.Count;
+                book.AmountReviews++;
                 await _bookContext.SaveChangesAsync();
             }
 
