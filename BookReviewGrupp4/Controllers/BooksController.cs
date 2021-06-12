@@ -101,9 +101,30 @@ namespace BookReviewGrupp4.Controllers
         #endregion
 
         #region Delete
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var book = await _bookContext.Book
+                .FirstOrDefaultAsync(m => m.BookId == id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return View(book);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var book = await _bookContext.Book.FindAsync(id);
+            _bookContext.Book.Remove(book);
+            await _bookContext.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
         #endregion
 

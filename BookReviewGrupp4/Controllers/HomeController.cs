@@ -23,15 +23,9 @@ namespace BookReviewGrupp4.Controllers
 
         public IActionResult Index()
         {
-            
-            var books = from s in _bookContext.Book
-                        orderby s.AverageRating descending
-                        select s;
+            var books = _bookContext.Book.OrderByDescending(b => b.AverageRating).Take(8);
 
-
-            return View(books);
-            
-            
+            return View(books); 
         }
 
         public IActionResult About()
