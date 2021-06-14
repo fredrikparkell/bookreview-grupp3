@@ -21,9 +21,19 @@ namespace BookReviewGrupp4.Controllers
 
         #region Index
         // GET: Authors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var authors = await _context.Author.ToListAsync();
+            ViewData["NameSortParm"] = sortOrder == "name_desc" ? "Name" : "name_desc";
+            ViewData["CountrySortParm"] = sortOrder == "Country" ? "country_desc" : "Country";
+            ViewData["RatingSortParm"] = sortOrder == "rating_desc" ? "Rating" : "rating_desc";
+            ViewData["CurrentFilter"] = searchString;
+
+            var authors = _context.Author.Select(a => a);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                authors = authors.Where(s => s.Name.Contains(searchString)
+                                       || s.Name.Contains(searchString));
+            }
 
             foreach (var item in authors)
             {
@@ -39,7 +49,32 @@ namespace BookReviewGrupp4.Controllers
             }
             await _context.SaveChangesAsync();
 
-            return View(await _context.Author.ToListAsync());
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    authors = authors.OrderByDescending(s => s.Name);
+                    break;
+                case "Name":
+                    authors = authors.OrderBy(s => s.Name);
+                    break;
+                case "Country":
+                    authors = authors.OrderBy(s => s.Country);
+                    break;
+                case "country_desc":
+                    authors = authors.OrderByDescending(s => s.Country);
+                    break;
+                case "Rating":
+                    authors = authors.OrderBy(s => s.AverageRating);
+                    break;
+                case "rating_desc":
+                    authors = authors.OrderByDescending(s => s.AverageRating);
+                    break;
+                default:
+                    authors = authors.OrderBy(s => s.Name);
+                    break;
+            }
+
+            return View(await authors.AsNoTracking().ToListAsync());
         }
         #endregion
 
