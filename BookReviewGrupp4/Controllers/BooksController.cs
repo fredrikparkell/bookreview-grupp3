@@ -19,35 +19,29 @@ namespace BookReviewGrupp4.Controllers
         }
 
         #region Index
-        //public IActionResult Index()
-        //{
-        //    var books = from s in _bookContext.Book
-        //                select s;
-        //    books = books.OrderByDescending(s => s.Published);
-        //    return View(books);
-        //}
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["GenreSortParm"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
+            ViewData["AuthorSortParm"] = sortOrder == "Author" ? "author_desc" : "Author";
+            ViewData["RatingSortParm"] = sortOrder == "Rating" ? "rating_desc" : "Rating";
+            ViewData["ReviewSortParm"] = sortOrder == "Review" ? "review_desc" : "Review";
             ViewData["CurrentFilter"] = searchString;
 
-            var books = from s in _bookContext.Book
-                           select s;
+            var books = _bookContext.Book.Include(a => a.Author).Select(b => b);
             if (!String.IsNullOrEmpty(searchString))
             {
                 books = books.Where(s => s.Name.Contains(searchString)
                                        || s.Name.Contains(searchString));
             }
-            //if(String.IsNullOrEmpty(searchString) && sortOrder == null)
-            //{
-            //    books = books.OrderByDescending(s => s.Published);
-            //    return View(books);
-            //}
             switch (sortOrder)
             {
                 case "name_desc":
                     books = books.OrderByDescending(s => s.Name);
+                    break;
+                case "Name":
+                    books = books.OrderBy(s => s.Name);
                     break;
                 case "Date":
                     books = books.OrderBy(s => s.Published);
@@ -55,9 +49,32 @@ namespace BookReviewGrupp4.Controllers
                 case "date_desc":
                     books = books.OrderByDescending(s => s.Published);
                     break;
+                case "Genre":
+                    books = books.OrderBy(s => s.Genre);
+                    break;
+                case "genre_desc":
+                    books = books.OrderByDescending(s => s.Genre);
+                    break;
+                case "Author":
+                    books = books.OrderBy(s => s.Author.Name);
+                    break;
+                case "author_desc":
+                    books = books.OrderByDescending(s => s.Author.Name);
+                    break;
+                case "Rating":
+                    books = books.OrderBy(s => s.AverageRating);
+                    break;
+                case "rating_desc":
+                    books = books.OrderByDescending(s => s.AverageRating);
+                    break;
+                case "Review":
+                    books = books.OrderBy(s => s.AmountReviews);
+                    break;
+                case "review_desc":
+                    books = books.OrderByDescending(s => s.AmountReviews);
+                    break;
                 default:
-                    books = books.OrderBy(s => s.Name);
-                    //books = books.OrderByDescending(s => s.Published);
+                    books = books.OrderByDescending(s => s.Published);
                     break;
             }
 
@@ -77,7 +94,7 @@ namespace BookReviewGrupp4.Controllers
             await _bookContext.SaveChangesAsync();
 
             return View(await books.AsNoTracking().ToListAsync());
-        } // måste lägga till sortera för genre, author och averagerating
+        }
         #endregion
 
         #region Create
