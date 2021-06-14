@@ -25,8 +25,8 @@ namespace BookReviewGrupp4.Controllers
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             ViewData["GenreSortParm"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
             ViewData["AuthorSortParm"] = sortOrder == "Author" ? "author_desc" : "Author";
-            ViewData["RatingSortParm"] = sortOrder == "Rating" ? "rating_desc" : "Rating";
-            ViewData["ReviewSortParm"] = sortOrder == "Review" ? "review_desc" : "Review";
+            ViewData["RatingSortParm"] = sortOrder == "rating_desc" ? "Rating" : "rating_desc";
+            ViewData["ReviewSortParm"] = sortOrder == "review_desc" ? "Review" : "review_desc";
             ViewData["CurrentFilter"] = searchString;
 
             var books = _bookContext.Book.Include(a => a.Author).Select(b => b);
