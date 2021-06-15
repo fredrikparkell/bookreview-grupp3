@@ -92,6 +92,13 @@ namespace BookReviewGrupp4.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AuthorId,Name,Country")] Author author)
         {
+            if (AuthorPersonExists(author.Name, author.Country))
+            {
+                ModelState.AddModelError("Name", "Author already exists");
+
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(author);
@@ -242,6 +249,11 @@ namespace BookReviewGrupp4.Controllers
         private bool AuthorExists(int id)
         {
             return _context.Author.Any(e => e.AuthorId == id);
+        }
+
+        private bool AuthorPersonExists(string name, string country)
+        {
+            return _context.Author.Any(a => a.Name == name && a.Country == country);
         }
         #endregion
     }

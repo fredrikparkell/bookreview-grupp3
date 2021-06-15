@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookReviewGrupp4.Migrations
 {
     [DbContext(typeof(BookReviewContext))]
-    [Migration("20210611223957_smallchange")]
-    partial class smallchange
+    [Migration("20210615134928_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,13 @@ namespace BookReviewGrupp4.Migrations
                         {
                             AuthorId = 1,
                             AverageRating = 0m,
+                            Country = "Unknown",
+                            Name = "Unknown"
+                        },
+                        new
+                        {
+                            AuthorId = 3,
+                            AverageRating = 0m,
                             Country = "Sweden",
                             Name = "Robin Tranberg"
                         },
@@ -61,56 +68,56 @@ namespace BookReviewGrupp4.Migrations
                         },
                         new
                         {
-                            AuthorId = 3,
+                            AuthorId = 4,
                             AverageRating = 0m,
                             Country = "Colombia",
                             Name = "Edwin Larsson"
                         },
                         new
                         {
-                            AuthorId = 4,
+                            AuthorId = 5,
                             AverageRating = 0m,
                             Country = "Sweden",
                             Name = "Nils Brufors"
                         },
                         new
                         {
-                            AuthorId = 5,
+                            AuthorId = 6,
                             AverageRating = 0m,
                             Country = "Sweden",
                             Name = "Fredrik Parkell"
                         },
                         new
                         {
-                            AuthorId = 6,
+                            AuthorId = 7,
                             AverageRating = 0m,
                             Country = "Sweden",
                             Name = "Johan Nilsson"
                         },
                         new
                         {
-                            AuthorId = 7,
+                            AuthorId = 8,
                             AverageRating = 0m,
                             Country = "Sweden",
                             Name = "Johannes Posse"
                         },
                         new
                         {
-                            AuthorId = 8,
+                            AuthorId = 9,
                             AverageRating = 0m,
                             Country = "Sweden",
                             Name = "Simon Hörnfalk"
                         },
                         new
                         {
-                            AuthorId = 9,
+                            AuthorId = 10,
                             AverageRating = 0m,
                             Country = "Sweden",
                             Name = "Andreas Lind"
                         },
                         new
                         {
-                            AuthorId = 10,
+                            AuthorId = 11,
                             AverageRating = 0m,
                             Country = "Sweden",
                             Name = "Émile Nestor"
@@ -160,7 +167,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             BookId = 1,
                             AmountReviews = 0,
-                            AuthorId = 1,
+                            AuthorId = 2,
                             AverageRating = 0m,
                             Description = "Hej this book is about david",
                             Genre = "Horror",
@@ -171,18 +178,18 @@ namespace BookReviewGrupp4.Migrations
                         {
                             BookId = 3,
                             AmountReviews = 0,
-                            AuthorId = 3,
+                            AuthorId = 4,
                             AverageRating = 0m,
-                            Description = "This is my life as a fuckboy and examples on how you can become one too.",
+                            Description = "This is my life as looking good and being dumb. As the result of having all my oxygen going through my muscles, instead of my brain.",
                             Genre = "Biography",
                             Name = "My life as an idiot",
-                            Published = new DateTime(2021, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Published = new DateTime(2014, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             BookId = 4,
                             AmountReviews = 0,
-                            AuthorId = 4,
+                            AuthorId = 5,
                             AverageRating = 0m,
                             Description = "In this book I'll show you how to cook real food, without vegetables.",
                             Genre = "Food",
@@ -193,7 +200,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             BookId = 2,
                             AmountReviews = 0,
-                            AuthorId = 2,
+                            AuthorId = 3,
                             AverageRating = 0m,
                             Description = "This book will guide you on how to easily lift 200 kg in a week, provided that you already can lift 199 kg.",
                             Genre = "Sport",
@@ -204,18 +211,18 @@ namespace BookReviewGrupp4.Migrations
                         {
                             BookId = 5,
                             AmountReviews = 0,
-                            AuthorId = 5,
+                            AuthorId = 6,
                             AverageRating = 0m,
                             Description = "Hello, I'm Fredrik. I will show how you can become rich and successful by just eating falukorv every day for the rest of your life.",
                             Genre = "Economy",
                             Name = "How to become successful",
-                            Published = new DateTime(2020, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Published = new DateTime(2011, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             BookId = 6,
                             AmountReviews = 0,
-                            AuthorId = 6,
+                            AuthorId = 7,
                             AverageRating = 0m,
                             Description = "I'll guide you on how to get all the trophies in every game. Only for gamers so this book only supports Playstation players",
                             Genre = "Games",
@@ -226,7 +233,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             BookId = 7,
                             AmountReviews = 0,
-                            AuthorId = 7,
+                            AuthorId = 8,
                             AverageRating = 0m,
                             Description = "How to breed baby ducklings.",
                             Genre = "Animals",
@@ -237,18 +244,18 @@ namespace BookReviewGrupp4.Migrations
                         {
                             BookId = 8,
                             AmountReviews = 0,
-                            AuthorId = 8,
+                            AuthorId = 9,
                             AverageRating = 0m,
                             Description = "A book that represents SUT20's first party.",
                             Genre = "Party",
                             Name = "Simon är bäst",
-                            Published = new DateTime(2020, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Published = new DateTime(2009, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             BookId = 9,
                             AmountReviews = 0,
-                            AuthorId = 9,
+                            AuthorId = 10,
                             AverageRating = 0m,
                             Description = "A parody of Harry Potter.",
                             Genre = "Science fiction",
@@ -259,9 +266,9 @@ namespace BookReviewGrupp4.Migrations
                         {
                             BookId = 10,
                             AmountReviews = 0,
-                            AuthorId = 10,
+                            AuthorId = 11,
                             AverageRating = 0m,
-                            Description = "This is my own experience on how to survive with a cat from (hell).",
+                            Description = "This is my own experience on how to survive with a cat from hell.",
                             Genre = "Survival",
                             Name = "My cat from hell",
                             Published = new DateTime(2021, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -304,7 +311,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 1,
                             BookId = 4,
-                            Date = new DateTime(2021, 8, 20, 17, 59, 59, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 2, 20, 17, 59, 59, 0, DateTimeKind.Unspecified),
                             Description = "I got recommended this after getting sick by the falukorv-diet a friend of mine put me on. This has changed my life.",
                             Name = "Nils",
                             Rating = 4m
@@ -331,7 +338,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 4,
                             BookId = 1,
-                            Date = new DateTime(2021, 6, 20, 17, 12, 59, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 1, 20, 17, 12, 59, 0, DateTimeKind.Unspecified),
                             Description = "Meh, couldve been better. Weird guy, ok story.",
                             Name = "LukasTheMan69420",
                             Rating = 3m
@@ -340,7 +347,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 5,
                             BookId = 10,
-                            Date = new DateTime(2020, 12, 20, 17, 59, 34, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 4, 20, 17, 59, 34, 0, DateTimeKind.Unspecified),
                             Description = "This brought back alot of bad memories..",
                             Name = "Svennis",
                             Rating = 2m
@@ -376,7 +383,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 9,
                             BookId = 4,
-                            Date = new DateTime(2021, 8, 20, 17, 59, 59, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 3, 20, 17, 59, 59, 0, DateTimeKind.Unspecified),
                             Description = "Och så vill jag ha en kokt med bröd",
                             Name = "Stefan Löfven",
                             Rating = 5m
@@ -421,7 +428,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 14,
                             BookId = 1,
-                            Date = new DateTime(2021, 11, 15, 17, 14, 59, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 1, 15, 17, 14, 59, 0, DateTimeKind.Unspecified),
                             Description = "Tråkig, seg och allmänt grått tema, den här författaren får steppa upp asså",
                             Name = "Parkelloman",
                             Rating = 1m
@@ -430,7 +437,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 15,
                             BookId = 8,
-                            Date = new DateTime(2021, 8, 20, 14, 59, 6, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 4, 20, 14, 59, 6, 0, DateTimeKind.Unspecified),
                             Description = "Rekommenderar inte.",
                             Name = "Julia Nilsson",
                             Rating = 2m
@@ -448,7 +455,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 17,
                             BookId = 10,
-                            Date = new DateTime(2019, 6, 20, 23, 59, 17, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 6, 13, 23, 59, 17, 0, DateTimeKind.Unspecified),
                             Description = "Gave me chills, great piece of literature",
                             Name = "LukasTheMan69420",
                             Rating = 4m
@@ -475,7 +482,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 20,
                             BookId = 7,
-                            Date = new DateTime(2021, 2, 6, 2, 59, 4, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 5, 6, 2, 59, 4, 0, DateTimeKind.Unspecified),
                             Description = "No words, I just wasted real life time on this absolute trash of a book",
                             Name = "Klara Petersson",
                             Rating = 1m
@@ -493,7 +500,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 22,
                             BookId = 6,
-                            Date = new DateTime(2021, 8, 25, 23, 59, 34, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 2, 25, 23, 59, 34, 0, DateTimeKind.Unspecified),
                             Description = "Yes we can.. More like hell no we cant. Try again Mr Nilsson!",
                             Name = "Obama",
                             Rating = 2m
@@ -511,7 +518,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 24,
                             BookId = 9,
-                            Date = new DateTime(2021, 8, 14, 16, 12, 4, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 3, 14, 16, 12, 4, 0, DateTimeKind.Unspecified),
                             Description = "This dude and his book stinks",
                             Name = "Fredrik",
                             Rating = 1m
@@ -520,7 +527,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 25,
                             BookId = 1,
-                            Date = new DateTime(2021, 11, 6, 17, 59, 59, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 1, 6, 17, 59, 59, 0, DateTimeKind.Unspecified),
                             Description = "Kreativiteten rinner ur mig, men grym bok typ",
                             Name = "FelixTheGray",
                             Rating = 5m
@@ -529,7 +536,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 26,
                             BookId = 10,
-                            Date = new DateTime(2020, 2, 20, 17, 59, 6, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 2, 20, 17, 59, 6, 0, DateTimeKind.Unspecified),
                             Description = "I suck at golf just as much as this book was terrible to read",
                             Name = "Johannes",
                             Rating = 2m
@@ -547,7 +554,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 28,
                             BookId = 8,
-                            Date = new DateTime(2020, 8, 12, 4, 59, 4, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2020, 6, 12, 4, 59, 4, 0, DateTimeKind.Unspecified),
                             Description = "EYYYYYYYYYYY BRO",
                             Name = "Andreas",
                             Rating = 3m
@@ -565,7 +572,7 @@ namespace BookReviewGrupp4.Migrations
                         {
                             ReviewId = 30,
                             BookId = 4,
-                            Date = new DateTime(2021, 12, 20, 6, 59, 14, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2021, 2, 20, 6, 59, 14, 0, DateTimeKind.Unspecified),
                             Description = "What an amazing story!",
                             Name = "Johan Nilsson",
                             Rating = 5m

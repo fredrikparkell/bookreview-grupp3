@@ -13,6 +13,7 @@ namespace BookReviewGrupp4.Controllers
     public class BooksController : Controller
     {
         private readonly BookReviewContext _bookContext;
+
         public BooksController(BookReviewContext bookContext)
         {
             _bookContext = bookContext;
@@ -104,6 +105,43 @@ namespace BookReviewGrupp4.Controllers
             myViewModel.Authors = new SelectList(GetAuthors(), "AuthorId", "Name");
             return View(myViewModel);
         }
+
+        public IActionResult CreateAuthor()
+        {
+            var myViewModel = new ViewModel();
+            myViewModel.Authors = new SelectList(GetAuthors(), "AuthorId", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAuthor([Bind("AuthorId,Name,Country")] Author author)
+        {
+            if (AuthorPersonExists(author.Name, author.Country))
+            {
+                ModelState.AddModelError("Name", "Author already exists");
+
+                return View();
+            }
+
+            if (ModelState.IsValid)
+            {
+
+                _bookContext.Add(author);
+                await _bookContext.SaveChangesAsync();
+                //if (Request.Path.ToString().Contains("Books/Create"))
+                //{
+                //    return RedirectToAction("Create", "Books");
+                //}
+                return RedirectToAction("Create", "Books");
+            }
+
+            return View();
+
+
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookId, Name, Genre, Published, Description, AverageRating, AuthorId")] Book book)
@@ -255,6 +293,12 @@ namespace BookReviewGrupp4.Controllers
         {
             return _bookContext.Book.Any(b => b.BookId == id);
         }
+
+        private bool AuthorPersonExists(string name, string country)
+        {
+            return _bookContext.Author.Any(a => a.Name == name && a.Country == country);
+        }
+
         public IEnumerable<Author> GetAuthors()
         {
             var myAuthors = _bookContext.Author.Select(a => a);
