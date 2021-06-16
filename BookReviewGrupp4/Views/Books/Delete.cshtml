@@ -48,10 +48,13 @@
             @Html.DisplayFor(model => model.Author.Country)
         </dd class>
     </dl>
+   
     
-    <form asp-action="Delete">
+    <form asp-action="Delete" method="post">
         <input type="hidden" asp-for="BookId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        
+        <input type="submit" button onclick="return confirm('Are you sure you want to delete this book?')"  value="Delete" class="btn btn-danger"  /> |
+        <a asp-action="Index" id="return">Back to List</a>
     </form>
 </div>
+
