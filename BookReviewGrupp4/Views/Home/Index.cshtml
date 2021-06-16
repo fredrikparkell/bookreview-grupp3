@@ -122,7 +122,33 @@
 <!--This below will be changed/fixed.-->
 <div class="myReviews" style="display:flex;justify-content:center;align-items:center;">
     <div>
-        <h4 style="font-weight:bold;">Latest Reviews</h4>
+        <h4 class="text-center" style="font-weight:bold;">Latest Reviews</h4>
+        <div>
+            <!--Alla reviews laddas här-->
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Book</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Rating</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <tr>
+                            <td> <a asp-action="Details" asp-controller="Books" asp-route-id="@review.Book.BookId">@review.Book.Name</a></td>
+                            <td>@review.Name</td>
+                            <td style="max-width: 350px;"><p style="word-wrap: break-word;">@review.Description</p></td>
+                            <td>@review.Rating</td>
+                            <td>@review.Date</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

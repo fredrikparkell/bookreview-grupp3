@@ -1,6 +1,7 @@
 ﻿using BookReviewGrupp4.Data;
 using BookReviewGrupp4.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace BookReviewGrupp4.Controllers
             var myViewModel = new ViewModel();
             myViewModel.Books = _bookContext.Book.OrderByDescending(b => b.AverageRating).Take(8).ToList();
             myViewModel.AuthorsList = _bookContext.Author.OrderByDescending(a => a.AverageRating).Take(8).ToList();
+            myViewModel.Reviews = _bookContext.Review.Include(r => r.Book).OrderByDescending(b => b.Date).Take(5).ToList();
 
             return View(myViewModel); 
         }
