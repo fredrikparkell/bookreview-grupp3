@@ -214,7 +214,7 @@ namespace BookReviewGrupp4.Controllers
             return View(myViewModel);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateNewReview(int? bookId, string reviewName, string reviewDescription, int reviewRating)
+        public async Task<IActionResult> CreateNewReview(int? bookId, [Bind("ReviewId,Name,Rating,Description,Date,BookId")] Review review)
         {
             if (bookId == null)
             {
@@ -223,7 +223,7 @@ namespace BookReviewGrupp4.Controllers
 
             if (ModelState.IsValid) // eventuellt inte helt rätt koll här, funkar just nu iaf
             {
-                _bookContext.Add(new Review { BookId = (int)bookId, Date = DateTime.Now, Name = reviewName, Description = reviewDescription, Rating = reviewRating });
+                _bookContext.Add(new Review { BookId = (int)bookId, Date = DateTime.Now, Name = review.Name, Description = review.Description, Rating = review.Rating });
                 await _bookContext.SaveChangesAsync();
 
                 var reviews = _bookContext.Review.Where(b => b.BookId == bookId).ToList();
