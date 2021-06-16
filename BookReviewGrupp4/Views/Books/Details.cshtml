@@ -54,12 +54,15 @@
             <div class="col-md-4">
                 <form asp-action="CreateNewReview" method="post">
                     <input type="hidden" name="bookId" value="@Model.Book.BookId" />
-                    <label for="reviewName">Your Name</label>
-                    <input type="text" name="reviewName" /> <br />
-                    <label for="reviewDescription">Comments</label>
-                    <input type="text" name="reviewDescription" /> <br />
-                    <label for="reviewRating">The Rating</label>
-                    <input type="number" name="reviewRating" min="1" max="5"/> <br />
+                    <label asp-for="@Model.Review.Name">Your Name</label>
+                    <input asp-for="@Model.Review.Name" type="text" /> <br />
+                    <span asp-validation-for="@Model.Review.Name" class="text-danger"></span>
+                    <label asp-for="@Model.Review.Description">Comments</label>
+                    <input asp-for="@Model.Review.Description" type="text" /> <br />
+                    <span asp-validation-for="@Model.Review.Description" class="text-danger"></span>
+                    <label asp-for="@Model.Review.Rating">The Rating</label>
+                    <input asp-for="@Model.Review.Rating" type="number" min="1" max="5" /> <br />
+                    <span asp-validation-for="@Model.Review.Rating" class="text-danger"></span>
                     <div class="form-group">
                         <input type="submit" value="Post" class="btn btn-primary" style="background-color:limegreen" />
                     </div>
