@@ -164,7 +164,7 @@ namespace BookReviewGrupp4.Controllers
                 return NotFound();
             }
 
-            var book = await _bookContext.Book
+            var book = await _bookContext.Book.Include(b => b.Author)
                 .FirstOrDefaultAsync(m => m.BookId == id);
             if (book == null)
             {

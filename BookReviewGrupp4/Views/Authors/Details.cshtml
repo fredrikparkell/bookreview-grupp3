@@ -1,7 +1,7 @@
 ﻿@model BookReviewGrupp4.Models.ViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Author Details";
 }
 
 <h1 style="font-weight: bold;">@Model.Author.Name</h1>
@@ -58,7 +58,7 @@
                     <td>@book.Genre</td>
                     <td>@Model.Author.Name</td>
                     <td>@book.Published.ToShortDateString()</td>
-                    <td>@book.AverageRating</td>
+                    <td>@Math.Round(@book.AverageRating, 2) / 5</td>
                 </tr>
             }
         </tbody>

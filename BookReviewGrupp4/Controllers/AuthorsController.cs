@@ -184,10 +184,10 @@ namespace BookReviewGrupp4.Controllers
                 }
                 else
                 {
-                    item.AverageRating = reviews.Sum(x => x.Rating) / reviews.Count;
+                    item.AverageRating = bookReviews.Sum(x => x.Rating) / bookReviews.Count;
                 }
-                await _context.SaveChangesAsync();
             }
+            await _context.SaveChangesAsync();
 
             return View(myViewModel);
         }
