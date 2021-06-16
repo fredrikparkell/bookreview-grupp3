@@ -26,6 +26,7 @@ namespace BookReviewGrupp4.Controllers
             var myViewModel = new ViewModel();
             myViewModel.Books = _bookContext.Book.OrderByDescending(b => b.AverageRating).Take(8).ToList();
             myViewModel.AuthorsList = _bookContext.Author.OrderByDescending(a => a.AverageRating).Take(8).ToList();
+            myViewModel.Reviews = _bookContext.Review.OrderByDescending(b => b.Date).Take(5).ToList();
 
             return View(myViewModel); 
         }
