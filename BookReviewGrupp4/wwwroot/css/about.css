@@ -1,0 +1,125 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: white;
+    font-family: 'Kavivanar', cursive;
+    /*Fick lägga till detta för det knasar annars..*/
+    flex-direction: column;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+}
+
+    .container .card {
+        position: relative;
+        width: 300px;
+        padding: 20px;
+        margin: 20px;
+        background: #3f3f3f;
+        border-radius: 8px;
+        box-shadow: 10px 5px 5px gray;
+    }
+
+        .container .card.active::before {
+            border-top: 20px solid #ff3b7e;
+            border-right: 20px solid #ff3b7e;
+        }
+
+        .container .card .icon {
+            margin-bottom: 10px;
+        }
+
+            .container .card .icon img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+                width: 250px;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+        .container .card .content {
+            position: relative;
+            height: 215px;
+            overflow: hidden;
+        }
+
+        .container .card.active .content {
+            height: auto;
+        }
+
+        .container .card .content::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, #3f3f3f)
+        }
+
+        .container .card.active .content::before {
+            display: none;
+        }
+
+        .container .card h3 {
+            color: #fff;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .container .card .content p {
+            font-weight: 300;
+            color: #ccc;
+        }
+
+        .container .card .more {
+            border-radius: 8px;
+            position: relative;
+            padding: 10px 15px;
+            background: #17e78c;
+            margin-top: 15px;
+            display: inline-block;
+            cursor: pointer;
+            text-transform: uppercase;
+            color: #383838;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .container .card.active .more {
+            background: lightgrey;
+            color: #fff;
+        }
+
+        .container .card .more::before {
+            content: 'Read More';
+        }
+
+        .container .card.active .more::before {
+            content: 'Read Less';
+        }
+
+h1 {
+    text-align: center;
+}
